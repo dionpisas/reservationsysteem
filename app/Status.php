@@ -8,7 +8,7 @@ class Status extends Model
 {
     //
     public function type(){
-        return $this->hasMany('App\StatusType');
+        return $this->belongsTo('App\StatusType');
     }
 
 

@@ -7,10 +7,13 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+import swal from 'sweetalert';
+import Vue from 'vue';
+
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('materialize-css');
 } catch (e) {}
 
 /**
@@ -20,6 +23,8 @@ try {
  */
 
 window.axios = require('axios');
+window.swal = swal;
+window.vue = Vue;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

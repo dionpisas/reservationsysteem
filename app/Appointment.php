@@ -13,18 +13,19 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'user_id',
+        'date',
+        'statuses_id',
+        'start_time',
+        'end_time'
     ];
 
-    public function date(){
-        return $this->hasOne('App\Date');
-    }
 
     public function user(){
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function status(){
-        return $this->hasMany('App\Status');
+        return $this->belongsTo('App\Status','statuses_id');
     }
 }

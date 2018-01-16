@@ -28,10 +28,11 @@ class User extends Authenticatable
     ];
 
    public function role(){
-       return $this->hasOne('App\Role');
+       return $this->belongsTo('App\Role', 'roles_id');
    }
 
    public function appointment(){
        return $this->hasMany('App\Appointment');
    }
+
 }

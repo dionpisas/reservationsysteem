@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class AllTableSeeder extends Seeder
 {
+
+
     /**
      * Run the database seeds.
      *
@@ -13,11 +16,11 @@ class AllTableSeeder extends Seeder
     {
         //Roles
         DB::table('roles')->insert([
-            'name' => "user"
+            'name' => "User"
         ]);
 
         DB::table('roles')->insert([
-            'name' => "admin"
+            'name' => "Admin"
         ]);
 
         //Statustypes
@@ -29,28 +32,6 @@ class AllTableSeeder extends Seeder
         DB::table('status_types')->insert([
             'name' => "appointment",
             'type'=> 2
-        ]);
-
-
-        // Users
-        DB::table('users')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'roles_id' => 1,
-            'password' => bcrypt('secret')
-        ]);
-
-        DB::table('users')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'roles_id' => 2,
-            'password' => bcrypt('secret')
-        ]);
-
-        // Dates
-        DB::table('dates')->insert([
-            'start_date_time' => "2017-12-15 09:00:00",
-            'end_date_time'=> "2017-12-15 12:00:00",
         ]);
 
         // Statussen
@@ -74,12 +55,38 @@ class AllTableSeeder extends Seeder
             'status_types_id'=> 2,
         ]);
 
+
+        // Users
+        DB::table('users')->insert([
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'roles_id' => 1,
+            'password' => bcrypt('secret')
+        ]);
+
+        DB::table('users')->insert([
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'roles_id' => 1,
+            'password' => bcrypt('secret')
+        ]);
+
+
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'roles_id' => 2,
+            'password' => bcrypt('admin123')
+        ]);
+
+
         // Appointments
         DB::table('appointments')->insert([
-            'name' => "user",
             'user_id'=> null,
-            'dates_id' => 1,
             'statuses_id' => 1,
+            'date' => date("Y-m-d"),
+            'start_time' => date("Y-m-d H:i:s"),
+            'end_time' => date("Y-m-d H:i:s")
         ]);
     }
 }
