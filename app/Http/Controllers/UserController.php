@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Appointment;
 
@@ -17,9 +18,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('roles_id', 1)->get();
-        $admin = User::where('roles_id', 2)->get();
-        return view('users.index', compact('users', 'admin'));
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            // get users
+            $users = User::where('roles_id', 1)->get();
+            //get admins
+            $admin = User::where('roles_id', 2)->get();
+            return view('users.index', compact('users', 'admin'));
+
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
+
     }
 
     /**
@@ -29,8 +41,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('users.create', compact('roles'));
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            // get all roles
+            $roles = Role::all();
+            return view('users.create', compact('roles'));
+
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**
@@ -84,9 +105,18 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $header = 'Gebruiker verwijderen';
-        $text = 'Weet u zeker dat u deze geberuiker  wilt verwijderen?';
-        return view('users.show', compact('user', 'header', 'text'));
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            // modal vars
+            $header = 'Gebruiker verwijderen';
+            $text = 'Weet u zeker dat u deze geberuiker  wilt verwijderen?';
+            return view('users.show', compact('user', 'header', 'text'));
+
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**
@@ -97,8 +127,17 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
-        return view('users.edit', compact('user', 'roles'));
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            // get all roles
+            $roles = Role::all();
+            return view('users.edit', compact('user', 'roles'));
+
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**

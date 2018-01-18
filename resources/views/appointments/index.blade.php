@@ -5,18 +5,10 @@
 @section('content')
 
 
-    <div class="row">
-        <div class="col s12">
-            <div class="col s9">
-                <h2 class="center-aligned">Alle Afspraken</h2>
-                <hr>
-            </div>
-
-            <div class="col s3">
-                <a class="waves-effect waves-light btn"><i id="newbutton" class="material-icons right">add_circle</i>Nieuw</a>
-            </div>
-        </div>
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Alle afspraken</h1>
     </div>
+    <hr>
 
     @if(empty($appointment))
 

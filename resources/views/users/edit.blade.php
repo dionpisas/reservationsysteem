@@ -5,7 +5,10 @@
 @section('content')
 
 
-    <h2> Gebruiker aanpassen</h2>
+
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Geberuiker aanpassen</h1>
+    </div>
     <hr>
 
     <div class="row">
@@ -39,7 +42,7 @@
             </div>
 
 
-            <div class="row">
+
                 <div class="input-field col s8">
                     <select name="roles_id">
                         <option value="" disabled selected>Selecteer een role voor de gebruiker</option>
@@ -49,20 +52,19 @@
                     </select>
                     <label>Gebruikers role selecteren</label>
                 </div>
-            </div>
 
 
-            <div class="row">
+
                 <div class="input-field col s6">
                     <button class="btn waves-effect green accent-4" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
-            </div>
 
             @include('layout.error')
         </form>
 
+    </div>
 
         @endsection
         @section('script')

@@ -1,11 +1,10 @@
 @extends('layout.admin.master')
 
-
-
 @section('content')
 
-
-    <h2>Nieuw gebruiker aanmaken</h2>
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Nieuwe gebruiker aanmaken</h1>
+    </div>
     <hr>
 
     <div class="row">
@@ -25,7 +24,7 @@
             </div>
             <br>
 
-            <div class="row col s12">
+
                 <div class="input-field col s6">
                     <input id="password" type="password" name="password" class="validate">
                     <label for="password">Wachtwoord</label>
@@ -35,23 +34,21 @@
                     <input id="password_confirmation" type="password"  name="password_confirmation" class="validate">
                     <label for="password_confirmation">Wachtwoord herhalen</label>
                 </div>
-            </div>
 
-
-            <div class="row">
                 <div class="input-field col s6">
                     <button class="btn waves-effect green accent-4" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
-            </div>
+
 
         </form>
 
-
+    </div>
+    @include('layout.error')
 @endsection
 
-        @include('layout.error')
+
 
         @section('script')
             <script>

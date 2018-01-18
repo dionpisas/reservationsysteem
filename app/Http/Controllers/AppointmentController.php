@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Appointment;
 use App\User;
 use App\Status;
+
 
 class AppointmentController extends Controller
 {
@@ -17,10 +19,18 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-//        $appointment = Appointment::find(1)->date;
-        $appointment= Appointment::all();
-//        dd($appointment);
-        return view('appointments.index', compact('appointment'));
+            //check if login
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            //check if user is admin
+            $appointment= Appointment::all();
+            return view('appointments.index', compact('appointment'));
+
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
+
     }
 
     /**
@@ -30,10 +40,17 @@ class AppointmentController extends Controller
      */
     public function create()
     {
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            $users =  User::where('roles_id', 1)->get();
+            $status = Status::where('status_types_id', 1)->get();
+            return view('appointments.create', compact( 'status', 'users'));
 
-        $users =  User::where('roles_id', 1)->get();
-        $status = Status::where('status_types_id', 1)->get();
-        return view('appointments.create', compact( 'status', 'users'));
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**
@@ -105,12 +122,20 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-//        dd($appointment);
-        $header = 'Afspraak verwijderen';
-        $text = 'Weet u zeker dat u deze afspraak wilt verwijderen?';
+
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            //modal vars
+            $header = 'Afspraak verwijderen';
+            $text = 'Weet u zeker dat u deze afspraak wilt verwijderen?';
+            return view('appointments.show', compact('appointment', 'header', 'text'));
 
 
-        return view('appointments.show', compact('appointment', 'header', 'text'));
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**
@@ -120,12 +145,19 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit( Appointment $appointment)
-    {   //get all users except admin
-        $users =  User::where('roles_id', 1)->get();
-        //get all statuses for appointments
-        $status = Status::where('status_types_id', 1)->get();
-
-        return view('appointments.edit', compact('appointment', 'users', 'status'));
+    {
+        //check if login and admin
+        if(Auth::check() &&  Auth::user()->isAdmin()){
+            //get all users except admin
+            $users =  User::where('roles_id', 1)->get();
+            //get all statuses for appointments
+            $status = Status::where('status_types_id', 1)->get();
+            return view('appointments.edit', compact('appointment', 'users', 'status'));
+        }else{
+            //redirect for normal user to user available appoitnments
+            session()->flash('message', 'U ben niet bevoegd om deze pagina te bezoeken.');
+            return redirect()->route('appointments.index');
+        }
     }
 
     /**

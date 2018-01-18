@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
@@ -22,21 +22,25 @@ Auth::routes();
 //Route::get('/reservations/create', 'AppointmentController@create');
 //Route::get('/reservations/{reservations}', 'AppointmentController@show');
 
-Route::get('/', 'Auth\LoginController@showLoginForm');
+//Route::get('/admin', 'Auth\LoginController@showLoginForm');
+Route::get('/home', 'Auth\LoginController@showLoginForm');
+
+
 //Admin routes
-Route::middleware(['auth:api'])->prefix('admin')->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::resource('/appointment', 'AppointmentController');
 
+
     Route::resource('/users', 'UserController');
-    });
-
-//user routes
-Route::middleware(['auth:api'])->prefix('user')->group(function () {
-
     Route::resource('appointments', 'ReservationController', ['except' =>[
         'create', 'destroy', 'store'
     ]]);
+
+});
+
+//user routes
+Route::middleware(['auth'])->group(function () {
 
     Route::resource('/reservations', 'ReservedappointmentsController', ['except' =>[
         'create', 'destroy', 'store', 'edit', 'update' , 'show'

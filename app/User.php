@@ -35,4 +35,12 @@ class User extends Authenticatable
        return $this->hasMany('App\Appointment');
    }
 
+   public function isAdmin(){
+
+       return $this->role->id == 2;
+   }
+
+   public function isUSer(){
+
+   }
 }

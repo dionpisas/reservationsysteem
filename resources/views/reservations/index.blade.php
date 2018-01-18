@@ -3,8 +3,10 @@
 
 @section('content')
 
-    <h2 class="center-aligned">Afspraken die beschikbaar zijn.</h2>
-   <hr>
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Afspraken die beschikbaar zijn</h1>
+    </div>
+    <hr>
 
     @if(empty($appointments))
 
@@ -17,7 +19,7 @@
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>Afspraken</h4></li>
                     @foreach($appointments as $app)
-                        <?php $originalDate = $appointments->date;
+                        <?php $originalDate = $app->date;
                         $newDate = date("d-F-Y", strtotime($originalDate)) ?>
                         <li class="collection-item"><div>Afspraak datum : {{$newDate}}<a href="{{ route('appointments.show', $app->id) }}" class="secondary-content">Om te bekijken klik hier<i class="material-icons"></i></a></div></li>
                     @endforeach

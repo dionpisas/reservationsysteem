@@ -4,7 +4,9 @@
 
 @section('content')
 
-<h2>Afspraak info</h2>
+<div class="col s8" id="headers">
+    <h1 class="center -align z-depth-2">Afspraak info</h1>
+</div>
 <hr>
 
 <div class="row">
@@ -12,7 +14,9 @@
         <div class="col s8">
             <p>Afspraak nummer: {{$appointment->id}}</p>
             <p>Afspraak gekoppeld aan: @if(!$appointment->user_id) geen gebruiker gekoppeld. @else {{$appointment->user->name}} @endif</p>
-            <p>Afspraak Datum: {{$appointment->date}}</p>
+            <?php $originalDate = $appointment->date;
+            $newDate = date("d-F-Y", strtotime($originalDate)) ?>
+            <p>Afspraak Datum: {{$newDate}}</p>
             <p>Afspraak Status: {{$appointment->status->name }}</p>
             <p>Afspraak Tijdstip: {{$appointment->start_time}} tot {{$appointment->end_time}} </p>
         </div>

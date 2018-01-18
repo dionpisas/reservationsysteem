@@ -7,3 +7,22 @@
 
 // Materialize
 @import "~materialize-css/sass/materialize";
+
+
+#headers{
+ background-color: #ee6e73;
+}
+
+h1{
+  color:white;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}

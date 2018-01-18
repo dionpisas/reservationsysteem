@@ -79,6 +79,13 @@ class AllTableSeeder extends Seeder
             'password' => bcrypt('admin123')
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'dion',
+            'email' => 'dion@email.nl',
+            'roles_id' => 1,
+            'password' => bcrypt('dion123')
+        ]);
+
 
         // Appointments
         DB::table('appointments')->insert([

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col s12">
             <div class="panel panel-default">
-                <h2 class="center-aligned">Login</h2>
+                <h2 class="center -aligned">Login</h2>
                 <hr>
 
                 <div class="panel-body">

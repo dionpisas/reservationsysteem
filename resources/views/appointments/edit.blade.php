@@ -4,7 +4,10 @@
 
 
 
-    <h2>Afspraak aanpassen</h2>
+
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Afspraak aanpassen</h1>
+    </div>
     <hr>
 
     <div class="row">
@@ -22,13 +25,13 @@
             <br>
             <div class="input-field col s6">
                 <label for="start_time">Klik hier om een start tijdstip te selecteren</label>
-                <input type="text"  name="start_time" value="{{$appointment->start_time}}"  id="start_time" class="timepicker" required>
+                <input type="text"  name="start_time" value="{{ date("H:i", strtotime($appointment->start_time))}}"  id="start_time" class="timepicker" required>
             </div>
 
 
             <div class="input-field col s6">
                 <label for="end_time">Klik hier om een eind tijdstip te selecteren</label>
-                <input type="text"  name="end_time" value="{{$appointment->end_time}}"  id="end_time" class="timepicker">
+                <input type="text"  name="end_time" value="{{ date("H:i", strtotime($appointment->end_time))}}"  id="end_time" class="timepicker">
             </div>
 
             <hr>

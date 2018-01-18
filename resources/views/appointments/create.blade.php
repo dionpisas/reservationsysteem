@@ -3,8 +3,9 @@
 @section('content')
 
 
-
-    <h2>Afspraak maken</h2>
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Afspraak maken</h1>
+    </div>
     <hr>
 
     <div class="row">
@@ -58,10 +59,6 @@
                     <label>Afspraak status selecteren</label>
                 </div>
             </div>
-
-
-
-
 
             <div class="row">
                 <div class="input-field col s6">

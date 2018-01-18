@@ -3,7 +3,10 @@
 
 @section('content')
 
-    <h2 class="center-aligned">Gereserveerde afsprakken.</h2>
+
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Gereserveerde afsprakken</h1>
+    </div>
     <hr>
 
     @if(empty($appointments))

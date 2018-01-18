@@ -4,7 +4,10 @@
 
 @section('content')
 
-    <h2 class="center-aligned">Alle gebruikers</h2>
+
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Alle gebruikers</h1>
+    </div>
     <hr>
 
     @if(empty($users))

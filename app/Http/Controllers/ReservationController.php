@@ -32,6 +32,7 @@ class ReservationController extends Controller
         if($appointment->user_id == 0){
             $header = 'Afspraak reserveren';
             $text = 'Weet u zeker dat u deze afspraak wilt reserveren?';
+            $warning = '';
         }else{
             $header = 'Reservering annuleren';
             $text = 'Weet u zeker dat u deze reservering wilt annuleren?';

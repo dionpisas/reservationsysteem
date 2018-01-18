@@ -4,7 +4,10 @@
 
 @section('content')
 
-    <h2>Gebruikers info</h2>
+
+    <div class="col s8" id="headers">
+        <h1 class="center -align z-depth-2">Gebruikers info</h1>
+    </div>
     <hr>
 
     <div class="row">
